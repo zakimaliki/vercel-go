@@ -7,8 +7,7 @@ import (
 	"github.com/tbxark/g4vercel-demo/api/src/controllers"
 )
 
-func Router() {
-	server := New()
+func Router(server *Engine) {
 	server.Use(Recovery(func(err interface{}, c *Context) {
 		if httpError, ok := err.(HttpError); ok {
 			c.JSON(httpError.Status, H{
