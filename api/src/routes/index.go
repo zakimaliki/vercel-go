@@ -42,6 +42,6 @@ func Router(server *Engine) {
 
 	server.GET("/products", controllers.ListProducts)
 
-	server.GET("/product/:id", controllers.DetailProduct)
+	// server.GET("/product/:id", controllers.DetailProduct)
 
 }

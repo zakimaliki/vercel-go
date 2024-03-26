@@ -1,14 +1,23 @@
 package models
 
+import (
+	"github.com/jinzhu/gorm"
+	"github.com/tbxark/g4vercel-demo/api/src/config"
+)
+
 type Product struct {
-	Name  string `json:"name"`
-	Price int    `json:"price"`
-	Stock int    `json:"stock"`
+	gorm.Model
+	Name  string
+	Price int
+	Stock int
 }
 
-var products = []Product{
-	{Name: "Product A", Price: 100000, Stock: 100},
-	{Name: "Product B", Price: 140000, Stock: 50},
-	{Name: "Product C", Price: 123000, Stock: 200},
-	// Add more sample products as needed
+func SelectAll() *gorm.DB {
+	items := []Product{}
+	return config.DB.Find(&items)
+}
+
+func Select(id string) *gorm.DB {
+	var item Product
+	return config.DB.First(&item, "id = ?", id)
 }
